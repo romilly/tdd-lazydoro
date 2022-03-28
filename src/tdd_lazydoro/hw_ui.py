@@ -9,7 +9,6 @@ class HardwareUI(UI):
         set_brightness(0.1)
         clear()
 
-
     def set_led(self, number, rgb: Tuple[int]):
         set_brightness(0.1)
         set_pixel(number, *rgb)

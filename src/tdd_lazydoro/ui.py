@@ -7,6 +7,7 @@ class UI(ABC):
     YELLOW = (255, 255, 0)
     GREEN =  (0, 255, 0)
     BLUE =   (0, 0, 255)
+    OFF =    (0, 0, 0)
 
     @abstractmethod
     def clear_leds(self):
