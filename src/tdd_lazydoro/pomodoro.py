@@ -15,4 +15,4 @@ class Pomodoro(Observable):
         if self.minute_timer >= self.duration:
             self.changed(self.TIME_ELAPSED)
         if 0 == self.minute_timer % 3:
-            self.changed(self.STEP, self.minute_timer / 3)
+            self.changed(self.STEP, self.minute_timer // 3)
