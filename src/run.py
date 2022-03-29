@@ -5,4 +5,6 @@ def run(speed=1):
     runner = tdd_lazydoro.runner.build()
     runner.run(speed)
 
-run(30)
+
+run(20)
+

@@ -34,11 +34,10 @@ class PersonWatcher:
         if person_present != self.person_was_present:
             self.alarm.reset()
         if person_present and not self.person_was_present:
-            self.person_was_present = True
             self.pomodoro.person_arrives()
         if self.person_was_present and not person_present:
-            self.person_was_present = False
             self.pomodoro.person_leaves()
+        self.person_was_present = person_present
 
 
 class Runner:

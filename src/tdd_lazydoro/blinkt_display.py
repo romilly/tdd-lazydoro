@@ -14,6 +14,7 @@ class BlinktDisplay(Display):
         clear()
 
     def set_led(self, number, rgb: Tuple[int]):
+        print('setting led %d %s' % (number, rgb))
         set_brightness(0.1)
         set_pixel(number, *rgb)
         show()
