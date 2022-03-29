@@ -10,7 +10,7 @@ from gpiozero.tones import Tone
 
 class BlinktDisplay(Display):
     def __init__(self):
-        set_brightness(0.3)
+        set_brightness(0.6)
 
     def clear_leds(self):
         clear()
