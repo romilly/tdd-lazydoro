@@ -1,9 +1,9 @@
 import tdd_lazydoro.runner
 
 
-def run(speed=1):
+def run(speed=1, alarm_time=60, duration=25):
     runner = tdd_lazydoro.runner.build()
-    runner.run(speed)
+    runner.run(speed, alarm_time, duration)
 
 
 run(3)

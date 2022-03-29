@@ -11,10 +11,10 @@ class Pomodoro:
     BREAK_TICK = 'Break tick'
     BREAK_OVER = 'Break time over'
 
-    def __init__(self, display: Display = None):
+    def __init__(self, display: Display, duration=25):
         self.display = display
         self.minute_timer = 0
-        self.duration = 3
+        self.duration = duration
         self.break_time = 5
         self.state = self.WAITING
 

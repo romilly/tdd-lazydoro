@@ -4,7 +4,6 @@ import adafruit_vl53l0x
 from time import sleep
 
 from tdd_lazydoro.blinkt_display import BlinktDisplay
-from tdd_lazydoro.helpers.mocks import MockDisplay
 from tdd_lazydoro.pomodoro import Pomodoro
 
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -12,14 +11,15 @@ vl53 = adafruit_vl53l0x.VL53L0X(i2c)
 
 
 class Alarm:
-    def __init__(self, pomodoro: Pomodoro):
+    def __init__(self, pomodoro: Pomodoro, alarm_time=60):
         self.pomodoro = pomodoro
+        self.alarm_time = alarm_time
         self.ticks = 0
 
     def tick(self):
         print('tick %d' % self.ticks)
         self.ticks += 1
-        if self.ticks >= 20:
+        if self.ticks >= self.alarm_time:
             self.pomodoro.minute_has_passed()
             self.reset()
 
@@ -53,7 +53,9 @@ class Runner:
         self.watcher = watcher
         self.snooze_time = 1
 
-    def run(self, speed=1):
+    def run(self, speed=1, alarm_time=60, duration=25):
+        self.alarm.alarm_time = alarm_time
+        self.alarm.pomodoro.duration = duration
         if speed == 1:
             self.snooze_time = 1
         else:
@@ -66,7 +68,6 @@ class Runner:
 
 def build():
     display = BlinktDisplay()
-    # display = MockDisplay()
     pomodoro = Pomodoro(display)
     alarm = Alarm(pomodoro)
     watcher = PersonWatcher(pomodoro, alarm)
