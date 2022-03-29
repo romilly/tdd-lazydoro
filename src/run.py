@@ -6,5 +6,5 @@ def run(speed=1):
     runner.run(speed)
 
 
-run()
+run(2)
 
