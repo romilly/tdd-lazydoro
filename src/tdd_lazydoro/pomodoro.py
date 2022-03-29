@@ -19,7 +19,7 @@ class Pomodoro:
         self.state = self.WAITING
 
     def minute_has_passed(self): # a minute has passed
-        print('tick')
+        print('tock')
         if self.state == self.WORKING:
             self.minute_timer += 1
             if self.minute_timer >= self.duration:
