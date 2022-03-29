@@ -15,3 +15,8 @@ class OutputAdapter(Observer):
         elif aspect == Pomodoro.BREAK_DUE:
             for i in range(8):
                 self.ui.set_led(i, UI.RED)
+        elif aspect == Pomodoro.WAITING:
+            self.ui.clear_leds()
+        elif aspect == Pomodoro.ON_BREAK:
+            self.ui.clear_leds()
+            self.ui.set_led(0, UI.GREEN)

@@ -27,14 +27,15 @@ class Pomodoro(Observable):
                 blue_index = min(7, self.minute_timer // 3)
                 self.changed(self.WORKING_TICK, blue_index)
 
-
-
-
     def person_arrives(self):
-        self.start_working()
+        if self.state in [self.WAITING, self.ON_BREAK]:
+            self.start_working()
 
     def person_leaves(self):
-        pass
+        if self.state == self.WORKING:
+            self.start_waiting()
+        elif self.state == self.BREAK_DUE:
+            self.start_break()
 
     def start_working(self):
         self.state = self.WORKING
@@ -44,4 +45,14 @@ class Pomodoro(Observable):
     def break_due(self):
         self.state = self.BREAK_DUE
         self.changed(self.BREAK_DUE)
+
+    def start_waiting(self):
+        self.state = self.WAITING
+        self.changed(self.WAITING)
+
+    def start_break(self):
+        self.state = self.ON_BREAK
+        self.minute_timer = 0
+        self.changed(self.ON_BREAK)
+
 
