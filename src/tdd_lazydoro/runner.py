@@ -17,7 +17,7 @@ class Alarm:
         self.ticks = 0
 
     def tick(self):
-        print('tick %d' % self.ticks)
+        # print('tick %d' % self.ticks)
         self.ticks += 1
         if self.ticks >= self.alarm_time:
             self.pomodoro.minute_has_passed()
