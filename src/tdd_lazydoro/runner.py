@@ -4,11 +4,12 @@ import adafruit_vl53l0x
 from time import sleep
 
 from tdd_lazydoro.blinkt_display import BlinktDisplay
+from tdd_lazydoro.helpers.mocks import MockDisplay
 from tdd_lazydoro.pomodoro import Pomodoro
-from test_tdd_lazydoro.integration.test_pomodoro import MockDisplay
 
 i2c = busio.I2C(board.SCL, board.SDA)
 vl53 = adafruit_vl53l0x.VL53L0X(i2c)
+
 
 class Alarm:
     def __init__(self, pomodoro: Pomodoro):
