@@ -1,16 +1,14 @@
 from time import sleep
 from typing import Tuple
 
-from tdd_lazydoro.ui import UI
+from tdd_lazydoro.display import Display
 from blinkt import set_pixel, set_brightness, show, clear
 
 from gpiozero import TonalBuzzer
 from gpiozero.tones import Tone
 
 
-
-
-class HardwareUI(UI):
+class BlinktDisplay(Display):
     def clear_leds(self):
         set_brightness(0.1)
         clear()
