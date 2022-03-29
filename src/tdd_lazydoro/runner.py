@@ -64,8 +64,8 @@ class Runner:
 
 
 def build():
-    # display = BlinktDisplay()
-    display = MockDisplay()
+    display = BlinktDisplay()
+    # display = MockDisplay()
     pomodoro = Pomodoro(display)
     alarm = Alarm(pomodoro)
     watcher = PersonWatcher(pomodoro, alarm)
