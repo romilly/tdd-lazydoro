@@ -30,7 +30,7 @@ class PersonWatcher:
         self.person_was_present = False
 
     def range(self, tof_range: int):
-        person_present = tof_range >= self.range_threshold
+        person_present = tof_range < self.range_threshold
         if person_present != self.person_was_present:
             self.alarm.reset()
         if person_present and not self.person_was_present:
