@@ -26,6 +26,12 @@ class Pomodoro(Observable):
             if 0 ==self.minute_timer % 3:
                 blue_index = min(7, self.minute_timer // 3)
                 self.changed(self.WORKING_TICK, blue_index)
+        elif self.state == self.ON_BREAK:
+            self.minute_timer += 1
+            if self.minute_timer == 5:
+                self.changed(self.BREAK_OVER)
+            else:
+                self.changed(self.BREAK_TICK, self.minute_timer)
 
     def person_arrives(self):
         if self.state in [self.WAITING, self.ON_BREAK]:

@@ -16,3 +16,8 @@ class UI(ABC):
     @abstractmethod
     def set_led(self, number, rgb: Tuple[int]):
         pass
+
+    @abstractmethod
+    def buzz(self):
+        pass
+

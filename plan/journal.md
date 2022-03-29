@@ -16,7 +16,7 @@ If someone stays until the 25 minutes is up, the pomodoro will show all red leds
 break. (BREAK_DUE)
 If someone leaves after the time is up, the timer will display a green led and then an extra green led for every 
 minute. (event = BREAK_TICK, start = ON_BREAK)
-When the break has reached 5 minutes the display will show yellow leds. (BREAK_OVER)
+When the break has reached 5 minutes the display will show yellow leds and the buzzer will buzz. (BREAK_OVER)
 
 ## Tuesday 29 March 2022
 

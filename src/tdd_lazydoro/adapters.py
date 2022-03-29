@@ -9,6 +9,7 @@ class OutputAdapter(Observer):
 
     def notify(self, observable, aspect, args):
         if aspect == Pomodoro.WORKING:
+            self.ui.clear_leds()
             self.ui.set_led(0, UI.BLUE)
         elif aspect == Pomodoro.WORKING_TICK:
             self.ui.set_led(args[0], UI.BLUE)
@@ -20,3 +21,11 @@ class OutputAdapter(Observer):
         elif aspect == Pomodoro.ON_BREAK:
             self.ui.clear_leds()
             self.ui.set_led(0, UI.GREEN)
+        elif aspect == Pomodoro.BREAK_TICK:
+            self.ui.set_led(args[0], UI.GREEN)
+        elif aspect == Pomodoro.BREAK_OVER:
+            for i in range(8):
+                self.ui.set_led(i, UI.YELLOW)
+            self.ui.buzz()
+
+
