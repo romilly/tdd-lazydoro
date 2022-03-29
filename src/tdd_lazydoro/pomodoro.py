@@ -14,12 +14,12 @@ class Pomodoro:
     def __init__(self, display: Display = None):
         self.display = display
         self.minute_timer = 0
-        self.duration = 25
+        self.duration = 3
         self.break_time = 5
         self.state = self.WAITING
 
     def minute_has_passed(self): # a minute has passed
-        print('tock')
+        print('tock %d' % self.minute_timer)
         if self.state == self.WORKING:
             self.minute_timer += 1
             if self.minute_timer >= self.duration:
