@@ -41,6 +41,7 @@ class Pomodoro:
 
     def person_leaves(self):
         print('person leaves')
+
         if self.state == self.WORKING:
             self.start_waiting()
         elif self.state == self.BREAK_DUE:

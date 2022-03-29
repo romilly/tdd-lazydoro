@@ -7,7 +7,6 @@ from tdd_lazydoro.pomodoro import Pomodoro
 from tdd_lazydoro.display import Display
 
 
-
 class PomodoroTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.display = MockDisplay()
