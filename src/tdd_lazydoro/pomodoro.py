@@ -35,10 +35,12 @@ class Pomodoro:
                 self.display.set_led(self.minute_timer, Display.GREEN)
 
     def person_arrives(self):
+        print('person arrives')
         if self.state in [self.WAITING, self.ON_BREAK]:
             self.start_working()
 
     def person_leaves(self):
+        print('person leaves')
         if self.state == self.WORKING:
             self.start_waiting()
         elif self.state == self.BREAK_DUE:
