@@ -32,3 +32,27 @@ The Pomodoro should have a PersonTracker which detects when a person arrives or 
 when time has elapsed.
 Time to reinstate states?
 
+
+## Wednesday 30 March 2022
+
+Woops! Lots of code that should be in the BlinktDisplay is currently in the Pomodoro.
+I need to do more refactoring.
+
+But first, I want to find out how easy it is to use VSCode to develop and debug remotely.
+
+So:
+1. enable passwordless login on `zero-002`
+2. close down PyCharm
+3. fire up VSCode
+
+Ahh! It looks as if it won't work on a Pi zero.
+
+I'll try it on another Pi. It works!
+
+Back to PyCharm for now.
+
+I need to finish the tests and then do the refactoring.
+
+I'm going to start by writing a [use case](../docs/use-case.md) as this will help me to check I've tested all the 
+stuff I need  to cover.
+
