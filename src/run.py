@@ -1,8 +1,8 @@
-import tdd_lazydoro.runner
+import tdd_lazydoro.clockwatcher
 
 
 def run(speed=1, alarm_time=60, duration=25):
-    runner = tdd_lazydoro.runner.build()
+    runner = tdd_lazydoro.clockwatcher.build()
     runner.run(speed, alarm_time, duration)
 
 

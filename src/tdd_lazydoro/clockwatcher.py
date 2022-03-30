@@ -35,8 +35,8 @@ class PersonWatcher:
         self.person_was_present = False
 
     def range(self, tof_range: int):
-        if tof_range == 0:
-            return
+        if tof_range == 0:  # sometimes get this when nothing is in range
+            tof_range = 8191
         person_present = tof_range < self.range_threshold
         if person_present != self.person_was_present:
             self.alarm.reset()
@@ -47,7 +47,7 @@ class PersonWatcher:
         self.person_was_present = person_present
 
 
-class Runner:
+class ClockWatcher:
     def __init__(self, alarm: Alarm, watcher: PersonWatcher):
         self.alarm = alarm
         self.watcher = watcher
@@ -71,7 +71,7 @@ def build():
     pomodoro = Pomodoro(display)
     alarm = Alarm(pomodoro)
     watcher = PersonWatcher(pomodoro, alarm)
-    return Runner(alarm, watcher)
+    return ClockWatcher(alarm, watcher)
 
 
 
