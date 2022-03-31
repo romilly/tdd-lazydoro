@@ -14,7 +14,7 @@ class PomodoroTestCase(unittest.TestCase):
 
     def wait(self, minutes=1):
         for i in range(minutes):
-            self.pomodoro.minute_has_passed()
+            self.pomodoro.tick()
 
     def test_display_is_clear_at_start(self):
         self.check_leds_are_off()
@@ -36,7 +36,7 @@ class PomodoroTestCase(unittest.TestCase):
         self.pomodoro.person_arrives()
         self.wait(25)
         assert_that(self.display.led_colors, equal_to(8 * [Display.RED]))
-        self.pomodoro.minute_has_passed()
+        self.pomodoro.tick()
         assert_that(self.display.led_colors, equal_to(8 * [Display.RED]))
 
     def test_goes_back_to_waiting_if_someone_leaves_early(self):

@@ -20,7 +20,7 @@ class Alarm:
         # print('tick %d' % self.ticks)
         self.ticks += 1
         if self.ticks >= self.alarm_time:
-            self.pomodoro.minute_has_passed()
+            self.pomodoro.tick()
             self.reset()
 
     def reset(self):

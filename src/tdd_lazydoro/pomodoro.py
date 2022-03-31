@@ -18,13 +18,12 @@ class Pomodoro:
         self.break_time = 5
         self.state = self.WAITING
 
-    def minute_has_passed(self): # a minute has passed
-        # print('tock %d' % self.minute_timer)
+    def tick(self): # a minute has passed
         if self.state == self.WORKING:
             self.minute_timer += 1
             if self.minute_timer >= self.duration:
                 self.break_due()
-            if 0 ==self.minute_timer % 3:
+            elif 0 ==self.minute_timer % 3:
                 self.display.set_led(min(7, self.minute_timer // 3), Display.BLUE)
         elif self.state == self.ON_BREAK:
             self.minute_timer += 1
@@ -36,13 +35,10 @@ class Pomodoro:
                 self.display.set_led(self.minute_timer, Display.GREEN)
 
     def person_arrives(self):
-        # print('person arrives')
         if self.state in [self.WAITING, self.ON_BREAK]:
             self.start_working()
 
     def person_leaves(self):
-        # print('person leaves')
-
         if self.state == self.WORKING:
             self.start_waiting()
         elif self.state == self.BREAK_DUE:
