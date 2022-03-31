@@ -3,7 +3,7 @@ import unittest
 from hamcrest import assert_that, equal_to
 
 from tdd_lazydoro.blinkt_adapter import BlinktAdapter
-from tdd_lazydoro.helpers.mocks import MockDisplay
+from test_tdd_lazydoro.helpers.mocks import MockDisplay
 from tdd_lazydoro.pomodoro import Pomodoro
 from tdd_lazydoro.display import Display
 
@@ -17,23 +17,28 @@ class PomodoroTestCase(unittest.TestCase):
         for i in range(minutes):
             self.pomodoro.tick()
 
-    def test_display_is_clear_at_start(self):
+    def test_display_is_off_at_start(self):
         self.check_leds_are_off()
+        # assert_that(self.display.led_colors[:2], equal_to([Display.BLUE, Display.OFF]))
 
     def check_leds_are_off(self):
+        # main success scenario
         for i in range(8):
             assert_that(self.display.led_colors[i], equal_to(Display.OFF))
 
     def test_one_led_is_blue_when_working_starts(self):
+        # main success scenario
         self.pomodoro.person_arrives()
         assert_that(self.display.led_colors[:2], equal_to([Display.BLUE, Display.OFF]))
 
     def test_eight_leads_are_blue_just_before_pomodoro_over(self):
+        # main success scenario
         self.pomodoro.person_arrives()
         self.wait(24)
         assert_that(self.display.led_colors, equal_to(8 * [Display.BLUE]))
 
     def test_eight_leds_are_red_when_pomodoro_over(self):
+        # main success scenario
         self.pomodoro.person_arrives()
         self.wait(25)
         assert_that(self.display.led_colors, equal_to(8 * [Display.RED]))

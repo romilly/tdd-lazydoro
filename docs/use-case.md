@@ -14,21 +14,23 @@ are at their desk.
 
 Primary Actor:          The writer
 Trigger:                The writer wants to do some writing
-Main Success Scenario:  
-1 The writer sits down at their desk
-2 Lazydoro shows that it has seen the writer
-3 Lazydoro notifies the writer every five minutes
-4 Lazydoro notifies the writer when the pomodoro time is over
-5 The writer gets up and leaves their desk for a break
-6 Lazydoro shows the passage of each minute of the break
-7 Lazydoro notifies the writer when the break is over
+Main Success Scenario:
+1. Lazydoro indicates that it is ready to start a pomodoro
+2. The writer arrives at their desk
+3. Lazydoro shows that it has seen the writer
+4. Lazydoro notifies the writer every five minutes
+5. Lazydoro notifies the writer when the pomodoro time is over
+6. The writer leaves their desk for a break
+7. Lazydoro shows the passage of each minute of the break
+8. Lazydoro notifies the writer when the break is over
 Extensions:
-4a The writer gets up early:
+4a The writer leaves early:
     1 Lazydoro ends the current pomodoro and starts a new pomodoro if the user returns.
 5a. The writer continues working in break time:
     1 Lazydoro notifies the user that the break is overdue
-    2 When the writer gets up Lazydoro proceeds to step 5
-6a. The writer returns and sits down before the break is over:
+    2 When the writer leaves Lazydoro proceeds to step 5
+6a. The writer arrives before the break is over:
     1 Lazydoro starts a new pomodoro
+
 
 

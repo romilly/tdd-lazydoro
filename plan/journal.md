@@ -47,12 +47,39 @@ So:
 
 Ahh! It looks as if it won't work on a Pi zero.
 
-I'll try it on another Pi. It works!
+I'll try it on a Pi 4. It works!
 
-Back to PyCharm for now.
+Back to PyCharm for now, as I don't want to tie up a Pi 4 for this very simple task.
 
 I need to finish the tests and then do the refactoring.
 
 I'm going to start by writing a [use case](../docs/use-case.md) as this will help me to check I've tested all the 
 stuff I need  to cover.
+
+## Thursday 31 March 2022
+
+Refactoring done, and behaviour changed.
+
+Now when a break is over Lazydoro reverts to a clear display, just as it shows at the start.
+
+### Blog post plan
+
+I'm going to draft a blog post explaining Lazydoro history, and the thinking behind the rewrite.
+
+2. Influenced by
+   1. Alistair Cockburn
+      1. Hexagonal Architecture
+      2. That's I think about architecture before I start coding
+   2. GOOS
+      1. Worked with the authors - Nat Pryce, Steve Freeman.
+      2. I write lots of automated tests
+      3. I often use Mock Objects to simplify Unit Tests
+      4. I expect code
+         1. will  be read more often that written, and
+         2. will live a long while 
+         3. So I try to name things to reveal my intent
+3. I like idiomatic Python, but I often use
+   1. ABCs, to separate interface from implementation
+   2. Type Annotations, when I think they make the code clearer
+
 
