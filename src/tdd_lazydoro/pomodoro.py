@@ -1,3 +1,4 @@
+from tdd_lazydoro.blinkt_adapter import BlinktAdapter
 from tdd_lazydoro.display import Display
 
 
@@ -11,8 +12,8 @@ class Pomodoro:
     BREAK_TICK = 'Break tick'
     BREAK_OVER = 'Break time over'
 
-    def __init__(self, display: Display, duration=25):
-        self.display = display
+    def __init__(self, adapter: BlinktAdapter, duration=25):
+        self.adapter = adapter
         self.minute_timer = 0
         self.duration = duration
         self.break_time = 5
@@ -24,15 +25,13 @@ class Pomodoro:
             if self.minute_timer >= self.duration:
                 self.break_due()
             elif 0 ==self.minute_timer % 3:
-                self.display.set_led(min(7, self.minute_timer // 3), Display.BLUE)
+                self.adapter.show_working_progress(self.minute_timer)
         elif self.state == self.ON_BREAK:
             self.minute_timer += 1
             if self.minute_timer == 5:
-                for i in range(8):
-                    self.display.set_led(i, Display.YELLOW)
-                self.display.buzz()
+                self.adapter.break_over()
             else:
-                self.display.set_led(self.minute_timer, Display.GREEN)
+                self.adapter.show_break_progress(self.minute_timer)
 
     def person_arrives(self):
         if self.state in [self.WAITING, self.ON_BREAK]:
@@ -47,21 +46,18 @@ class Pomodoro:
     def start_working(self):
         self.state = self.WORKING
         self.minute_timer = 0
-        self.display.clear_leds()
-        self.display.set_led(0, Display.BLUE)
+        self.adapter.start_working()
 
     def break_due(self):
         self.state = self.BREAK_DUE
-        for i in range(8):
-            self.display.set_led(i, Display.RED)
+        self.adapter.break_due()
 
     def start_waiting(self):
         self.state = self.WAITING
-        self.display.clear_leds()
+        self.adapter.start_waiting()
 
     def start_break(self):
         self.state = self.ON_BREAK
         self.minute_timer = 0
-        self.display.clear_leds()
-        self.display.set_led(0, Display.GREEN)
+        self.adapter.start_break()
 

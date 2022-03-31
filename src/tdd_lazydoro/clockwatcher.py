@@ -3,6 +3,7 @@ import busio
 import adafruit_vl53l0x
 from time import sleep
 
+from tdd_lazydoro.blinkt_adapter import BlinktAdapter
 from tdd_lazydoro.blinkt_display import BlinktDisplay
 from tdd_lazydoro.pomodoro import Pomodoro
 
@@ -68,7 +69,7 @@ class ClockWatcher:
 
 def build():
     display = BlinktDisplay()
-    pomodoro = Pomodoro(display)
+    pomodoro = Pomodoro(BlinktAdapter(display))
     alarm = Alarm(pomodoro)
     watcher = PersonWatcher(pomodoro, alarm)
     return ClockWatcher(alarm, watcher)

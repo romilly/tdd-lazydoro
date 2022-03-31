@@ -2,6 +2,7 @@ import unittest
 
 from hamcrest import assert_that, equal_to
 
+from tdd_lazydoro.blinkt_adapter import BlinktAdapter
 from tdd_lazydoro.helpers.mocks import MockDisplay
 from tdd_lazydoro.pomodoro import Pomodoro
 from tdd_lazydoro.display import Display
@@ -10,7 +11,7 @@ from tdd_lazydoro.display import Display
 class PomodoroTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.display = MockDisplay()
-        self.pomodoro = Pomodoro(self.display)
+        self.pomodoro = Pomodoro(BlinktAdapter(self.display))
 
     def wait(self, minutes=1):
         for i in range(minutes):
