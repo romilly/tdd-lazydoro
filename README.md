@@ -20,11 +20,11 @@ I documented this behaviour more formally in [a use case](docs/use-case.md).
 
 The current version of Lazydoro Mk II is driven by a Raspberry Pi Zero. Other models of Pi could be used instead.
 
-The additional hardware  is described [here](docs/hardware.md)
+The additional hardware  is described [here](docs/hardware.md).
 
 ## Installing the software
 
-I will package Lazydoro when it's stable. Until then
+I will package Lazydoro when it's stable. Until then, once you have built the hardware,
 
 1. Clone this repository on the Raspberry Pi.
 2. Install the required software:
