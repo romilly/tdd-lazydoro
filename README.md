@@ -1,9 +1,8 @@
 # Lazydoro Mk II
 
-**NB** This project works but is under active development.
-_Expect the code to change over the next few days!_
 
-Lazydoro is a small device that helps writers and programmers to practice the Pomodoro technique.
+Lazydoro is a small device that helps writers and programmers to practice the
+[Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).
 
 ![Lazydoro Mk II hardware](docs/img/lazydoro.jpg)
 
@@ -44,5 +43,14 @@ python3 run.py
 ```
 
 You can stop it by typing `crtl-C`.
+
+## Future plans
+
+I'm mow using this project, and will start blogging about the implementation.
+
+I plan a few minor improvements to hardware and software as I gain experience with it. 
+
+I _may_ also port it to run on an Adafruit feather board with a different display.
+
 
 
