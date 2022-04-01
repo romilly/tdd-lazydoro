@@ -10,7 +10,6 @@ class Pomodoro:
     BREAK_DUE = 'Should start a break'
     ON_BREAK = 'On a break'
     BREAK_TICK = 'Break tick'
-    BREAK_OVER = 'Break time over'
 
     def __init__(self, adapter: BlinktAdapter, duration=25, break_time=5, seconds=60):
         self.adapter = adapter
@@ -36,7 +35,7 @@ class Pomodoro:
             self.minute_timer += 1
             if self.minute_timer == 5:
                 self.adapter.break_over()
-                self.state = self.BREAK_OVER
+                self.start_waiting()
             else:
                 self.adapter.show_break_progress(self.minute_timer)
 

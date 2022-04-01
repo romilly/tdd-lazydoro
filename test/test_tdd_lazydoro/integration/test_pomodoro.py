@@ -74,13 +74,13 @@ class PomodoroTestCase(unittest.TestCase):
     def test_break_leds_go_yellow_after_5_minutes_and_buzzer_sounds(self):
         self.takes_break()
         self.wait(5)
-        assert_that(self.display.led_colors, equal_to(8 * [Display.YELLOW]))
+        self.check_leds_are_off()
         self.assertTrue(self.display.buzzing)
 
     def test_allows_breaks_longer_than_5_minutes(self):
         self.takes_break()
         self.wait(10)
-        assert_that(self.display.led_colors, equal_to(8 * [Display.YELLOW]))
+        self.check_leds_are_off()
 
 
 if __name__ == '__main__':

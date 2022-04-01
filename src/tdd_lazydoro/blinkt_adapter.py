@@ -9,8 +9,6 @@ class BlinktAdapter:
         self.display.set_led(timer, Display.GREEN)
 
     def break_over(self):
-        for i in range(8):
-            self.display.set_led(i, Display.YELLOW)
         self.display.buzz()
 
     def start_working(self):
