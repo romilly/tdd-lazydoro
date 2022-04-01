@@ -1,4 +1,5 @@
 from tdd_lazydoro.blinkt_adapter import BlinktAdapter
+from tdd_lazydoro.alarm import Alarm
 
 
 class Pomodoro:
@@ -11,15 +12,20 @@ class Pomodoro:
     BREAK_TICK = 'Break tick'
     BREAK_OVER = 'Break time over'
 
-    def __init__(self, adapter: BlinktAdapter, duration=25):
+    def __init__(self, adapter: BlinktAdapter, duration=25, break_time=5, seconds=60):
         self.adapter = adapter
         self.minute_timer = 0
         self.duration = duration
-        self.break_time = 5
+        self.break_time = break_time
         self.state = self.WAITING
+        self.alarm = Alarm(seconds)
         self.start_waiting()
 
     def tick(self): # time has passed
+        if self.alarm.tick():
+            self.tock()
+
+    def tock(self): # lots of time has passed
         if self.state == self.WORKING:
             self.minute_timer += 1
             if self.minute_timer >= self.duration:
@@ -34,10 +40,12 @@ class Pomodoro:
                 self.adapter.show_break_progress(self.minute_timer)
 
     def person_arrives(self):
+        self.alarm.reset()
         if self.state in [self.WAITING, self.ON_BREAK]:
             self.start_working()
 
     def person_leaves(self):
+        self.alarm.reset()
         if self.state == self.WORKING:
             self.start_waiting()
         elif self.state == self.BREAK_DUE:

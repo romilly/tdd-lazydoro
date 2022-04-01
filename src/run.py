@@ -1,12 +1,26 @@
-import tdd_lazydoro.clockwatcher
+from tdd_lazydoro.blinkt_adapter import BlinktAdapter
+from tdd_lazydoro.blinkt_display import BlinktDisplay
+from tdd_lazydoro.clockwatcher import ClockWatcher
+from tdd_lazydoro.pomodoro import Pomodoro
 
 
-def run(speed=1, alarm_time=60, duration=25):
-    runner = tdd_lazydoro.clockwatcher.build()
-    runner.run(speed, alarm_time, duration)
+def build(seconds=60, duration=25, break_time=5):
+    display = BlinktDisplay()
+    pomodoro = Pomodoro(BlinktAdapter(display), seconds=seconds, duration=duration, break_time=break_time)
+    return ClockWatcher(pomodoro)
 
 
-# run(3, alarm_time=10, duration=5) # sped up for demo purposes
+def run():
+    runner = build()
+    runner.run()
+
+
+def demo():
+    runner = build(seconds=5)
+    runner.run(speed=5)
 
 run()
+
+
+
 
