@@ -36,6 +36,7 @@ class Pomodoro:
             self.minute_timer += 1
             if self.minute_timer == 5:
                 self.adapter.break_over()
+                self.state = self.BREAK_OVER
             else:
                 self.adapter.show_break_progress(self.minute_timer)
 
