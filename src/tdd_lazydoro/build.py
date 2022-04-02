@@ -7,21 +7,22 @@ from tdd_lazydoro.pomodoro import Pomodoro
 from tdd_lazydoro.rangefinder import RangeFinder
 
 
-def build(display: Optional[Display] = None,
+def build(
+          display: Optional[Display] = None,
           rangefinder: Optional[RangeFinder]= None,
-          seconds=60,
+          ticks_per_minute=60,
           speed=1,
           duration=25,
           break_time=5):
-    if display is None:
+    if display is None: # pragma: no cover
         from tdd_lazydoro.blinkt_display import BlinktDisplay
         display = BlinktDisplay()
-    else:
+    else: # pragma: no cover
         display = display
-    if rangefinder is None:
+    if rangefinder is None: # pragma: no cover
         from tdd_lazydoro.vl53l0x_rangefinder import VL53L0XRangeFinder
         rangefinder =   VL53L0XRangeFinder()
-    else:
+    else:# pragma: no cover
         rangefinder = rangefinder
-    pomodoro = Pomodoro(BlinktAdapter(display), seconds=seconds, duration=duration, break_time=break_time)
+    pomodoro = Pomodoro(BlinktAdapter(display), ticks_per_minute=ticks_per_minute, duration=duration, break_time=break_time)
     return ClockWatcher(rangefinder, pomodoro, speed=speed)

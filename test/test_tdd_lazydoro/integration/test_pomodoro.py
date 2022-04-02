@@ -11,7 +11,7 @@ from tdd_lazydoro.display import Display
 class PomodoroTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.display = MockDisplay()
-        self.pomodoro = Pomodoro(BlinktAdapter(self.display), seconds=4) # short minutes for testing
+        self.pomodoro = Pomodoro(BlinktAdapter(self.display), ticks_per_minute=4) # short minutes for testing
 
     def wait(self, minutes=1): # short minutes for tests
         for i in range(4*minutes):

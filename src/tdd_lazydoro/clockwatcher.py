@@ -11,10 +11,7 @@ class ClockWatcher:
         self.range_threshold = range_threshold
         self.person_was_present = False
         self.glitch_filter = GlitchFilter(11)
-        if speed == 1:
-            self.snooze_time = 1
-        else:
-            self.snooze_time = 1 / speed
+        self.snooze_time = 1 / speed
 
     def is_person_in_range(self, tof_range: int):
         return tof_range < self.range_threshold
@@ -28,7 +25,7 @@ class ClockWatcher:
         self.person_was_present = person_present
 
     def run(self):
-        while True:
+        while True: # pragma: no cover
             self.tick()
             sleep(self.snooze_time)
 

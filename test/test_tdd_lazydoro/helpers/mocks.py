@@ -2,6 +2,7 @@ from tdd_lazydoro.display import Display
 from tdd_lazydoro.rangefinder import RangeFinder
 
 
+
 class MockDisplay(Display):
     def __init__(self):
         self.led_colors = None
@@ -20,6 +21,21 @@ class MockDisplay(Display):
 
 
 class MockRangeFinder(RangeFinder):
+    RANGE_WHEN_PERSON_PRESENT = 300
+    RANGE_WHEN_PERSON_ABSENT = 8191
+
+    def __init__(self):
+        self.current_range = self.RANGE_WHEN_PERSON_ABSENT
+
     def range(self) -> int:
-        pass
+        return self.current_range
+
+    def person_absent(self):
+        self.current_range = self.RANGE_WHEN_PERSON_ABSENT
+
+    def person_present(self):
+        self.current_range = self.RANGE_WHEN_PERSON_PRESENT
+
+
+
 

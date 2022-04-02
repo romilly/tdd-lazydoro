@@ -10,14 +10,14 @@ class Display(ABC):
     OFF =    (0, 0, 0)
 
     @abstractmethod
-    def clear_leds(self):
+    def clear_leds(self): #pragma: no cover
         pass
 
     @abstractmethod
-    def set_led(self, number, rgb: Tuple[int]):
+    def set_led(self, number, rgb: Tuple[int]):  #pragma: no cover
         pass
 
     @abstractmethod
-    def buzz(self):
+    def buzz(self):  #pragma: no cover
         pass
 

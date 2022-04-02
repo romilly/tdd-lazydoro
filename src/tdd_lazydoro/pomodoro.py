@@ -11,13 +11,13 @@ class Pomodoro:
     ON_BREAK = 'On a break'
     BREAK_TICK = 'Break tick'
 
-    def __init__(self, adapter: BlinktAdapter, duration=25, break_time=5, seconds=60):
+    def __init__(self, adapter: BlinktAdapter, duration=25, break_time=5, ticks_per_minute=60):
         self.adapter = adapter
         self.minute_timer = 0
         self.duration = duration
         self.break_time = break_time
         self.state = self.WAITING
-        self.alarm = Alarm(seconds)
+        self.alarm = Alarm(ticks_per_minute)
         self.start_waiting()
 
     def tick(self): # time has passed
