@@ -1,13 +1,12 @@
 import unittest
+from typing import List, Tuple
 
 from hamcrest import assert_that, equal_to
 
 from tdd_lazydoro.build import build
 from tdd_lazydoro.colors import *
 
-from test_tdd_lazydoro.helpers.mocks import MockDisplay, MockRangeFinder
-
-
+from test_tdd_lazydoro.helpers.mocks import MockDisplay, MockRangeFinder, shows_only, shows_all
 
 
 class AlmostE2ETestCase(unittest.TestCase):
@@ -28,18 +27,43 @@ class AlmostE2ETestCase(unittest.TestCase):
         self.person_present()
         self.check_leds_are_off()
         self.wait(seconds=10)
-        assert_that(self.display.led_colors[:2], equal_to([BLUE, OFF]))
+        assert_that(self.display, shows_only(BLUE))
         self.wait(minutes=24)
-        assert_that(self.display.led_colors, equal_to(8 * [BLUE]))
+        assert_that(self.display, shows_all(BLUE))
         self.wait(minutes=5)
-        assert_that(self.display.led_colors, equal_to(8 * [RED]))
+        assert_that(self.display, shows_all(RED))
         self.person_absent()
-        self.wait(minutes=0, seconds=20)
-        assert_that(self.display.led_colors[:2], equal_to([GREEN, OFF]))
+        self.wait(seconds=20)
+        assert_that(self.display, shows_only(GREEN))
         self.wait(minutes=1)
-        assert_that(self.display.led_colors[:3], equal_to([GREEN, GREEN, OFF]))
+        assert_that(self.display, shows_only(GREEN, GREEN))
         self.wait(minutes=1)
-        assert_that(self.display.led_colors[:4], equal_to(3 * [GREEN] + [OFF]))
+        assert_that(self.display, shows_only(GREEN, GREEN, GREEN))
+        self.wait(minutes=1)
+        assert_that(self.display, shows_only(GREEN, GREEN, GREEN, GREEN))
+        self.wait(minutes=1)
+        assert_that(self.display, shows_only(GREEN, GREEN, GREEN, GREEN, GREEN))
+        self.wait(minutes=1)
+        self.check_leds_are_off()
+        self.person_present()
+        self.wait(seconds=20)
+        assert_that(self.display, shows_only(BLUE))
+
+    def test_goes_back_to_waiting_if_someone_leaves_early(self):
+        self.person_present()
+        self.wait(24)
+        self.person_absent()
+        self.wait(seconds=20)
+        self.check_leds_are_off()
+
+    def test_returns_to_working_if_person_returns_early_during_break(self):
+        self.person_present()
+        self.wait(26)
+        self.person_absent()
+        self.wait(minutes=1)
+        self.person_present()
+        self.wait(seconds=20)
+        assert_that(self.display, shows_only(BLUE))
 
     def wait(self, minutes=0, seconds=0):
         duration = seconds + minutes * self.ticks_per_minute
