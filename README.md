@@ -46,7 +46,10 @@ You can stop it by typing `crtl-C`.
 
 ## Future plans
 
-I'm mow using this project, and will start blogging about the implementation.
+I'm now using this project, and will start blogging about the implementation.
+
+As of today (2 April 2022) automated test coverage is at 97%.
+That's a high figure for an embedded Python application!
 
 I plan a few minor improvements to hardware and software as I gain experience with it. 
 
