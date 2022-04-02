@@ -29,9 +29,12 @@ class ClockWatcher:
 
     def run(self):
         while True:
-            self.pomodoro.tick()
-            self.tell_pomodoro_if_person_arrives_or_leaves(self.rangefinder.range())
+            self.tick()
             sleep(self.snooze_time)
+
+    def tick(self):
+        self.pomodoro.tick()
+        self.tell_pomodoro_if_person_arrives_or_leaves(self.rangefinder.range())
 
 
 

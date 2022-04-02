@@ -1,4 +1,5 @@
 from tdd_lazydoro.display import Display
+from tdd_lazydoro.rangefinder import RangeFinder
 
 
 class MockDisplay(Display):
@@ -16,3 +17,9 @@ class MockDisplay(Display):
 
     def buzz(self):
         self.buzzing = True
+
+
+class MockRangeFinder(RangeFinder):
+    def range(self) -> int:
+        pass
+
