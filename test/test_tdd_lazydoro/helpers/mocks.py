@@ -1,5 +1,6 @@
 from tdd_lazydoro.display import Display
 from tdd_lazydoro.rangefinder import RangeFinder
+from tdd_lazydoro.colors import OFF
 
 
 
@@ -10,7 +11,7 @@ class MockDisplay(Display):
         self.buzzing = False
 
     def clear_leds(self):
-        self.led_colors = 8*[Display.OFF]
+        self.led_colors = 8*[OFF]
 
     def set_led(self, number, rgb):
         self.led_colors[number] = rgb

@@ -3,8 +3,11 @@ import unittest
 from hamcrest import assert_that, equal_to
 
 from tdd_lazydoro.build import build
-from tdd_lazydoro.display import Display
+from tdd_lazydoro.colors import *
+
 from test_tdd_lazydoro.helpers.mocks import MockDisplay, MockRangeFinder
+
+
 
 
 class AlmostE2ETestCase(unittest.TestCase):
@@ -25,14 +28,18 @@ class AlmostE2ETestCase(unittest.TestCase):
         self.person_present()
         self.check_leds_are_off()
         self.wait(seconds=10)
-        assert_that(self.display.led_colors[:2], equal_to([Display.BLUE, Display.OFF]))
+        assert_that(self.display.led_colors[:2], equal_to([BLUE, OFF]))
         self.wait(minutes=24)
-        assert_that(self.display.led_colors, equal_to(8 * [Display.BLUE]))
+        assert_that(self.display.led_colors, equal_to(8 * [BLUE]))
         self.wait(minutes=5)
-        assert_that(self.display.led_colors, equal_to(8 * [Display.RED]))
+        assert_that(self.display.led_colors, equal_to(8 * [RED]))
         self.person_absent()
         self.wait(minutes=0, seconds=20)
-        assert_that(self.display.led_colors[:2], equal_to([Display.GREEN, Display.OFF]))
+        assert_that(self.display.led_colors[:2], equal_to([GREEN, OFF]))
+        self.wait(minutes=1)
+        assert_that(self.display.led_colors[:3], equal_to([GREEN, GREEN, OFF]))
+        self.wait(minutes=1)
+        assert_that(self.display.led_colors[:4], equal_to(3 * [GREEN] + [OFF]))
 
     def wait(self, minutes=0, seconds=0):
         duration = seconds + minutes * self.ticks_per_minute
@@ -41,7 +48,7 @@ class AlmostE2ETestCase(unittest.TestCase):
 
     def check_leds_are_off(self):
         for i in range(8):
-            assert_that(self.display.led_colors[i], equal_to(Display.OFF))
+            assert_that(self.display.led_colors[i], equal_to(OFF))
 
     def person_absent(self):
         self.rangefinder.person_absent()
