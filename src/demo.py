@@ -1,4 +1,4 @@
-#!/usr/bin/env python python3
+#!/usr/bin/env python3
 
 from tdd_lazydoro.build import build
 
