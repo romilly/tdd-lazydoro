@@ -11,7 +11,7 @@ class VL53L0XRangeFinder(RangeFinder):
         self.vl53 = adafruit_vl53l0x.VL53L0X(self.i2c)
 
     def range(self) -> int:
-        tof_range = self.vl53.tell_pomodoro_if_person_arrives_or_leaves
+        tof_range = self.range()
         if tof_range == 0:  # sometimes get this when nothing is in range
             tof_range = 8191
         return tof_range
