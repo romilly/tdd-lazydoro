@@ -2,7 +2,9 @@
 
 from tdd_lazydoro.build import build
 
-
+"""
+Run fast for demo purposes
+"""
 runner = build(seconds=5, speed=5)
 runner.run()
 
