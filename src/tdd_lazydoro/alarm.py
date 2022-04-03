@@ -1,6 +1,6 @@
 class Alarm:
-    def __init__(self, seconds=60):
-        self.seconds = seconds
+    def __init__(self, ticks_per_minute=60):
+        self.seconds = ticks_per_minute
         self.ticks = 0
 
     def tick(self):

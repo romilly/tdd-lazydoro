@@ -49,13 +49,6 @@ class AlmostE2ETestCase(unittest.TestCase):
         self.wait(seconds=20)
         assert_that(self.display, shows_only(BLUE))
 
-    def test_goes_back_to_waiting_if_someone_leaves_early(self):
-        self.person_present()
-        self.wait(24)
-        self.person_absent()
-        self.wait(seconds=20)
-        self.check_leds_are_off()
-
     def test_returns_to_working_if_person_returns_early_during_break(self):
         self.person_present()
         self.wait(26)
@@ -64,6 +57,7 @@ class AlmostE2ETestCase(unittest.TestCase):
         self.person_present()
         self.wait(seconds=20)
         assert_that(self.display, shows_only(BLUE))
+
 
     def wait(self, minutes=0, seconds=0):
         duration = seconds + minutes * self.ticks_per_minute

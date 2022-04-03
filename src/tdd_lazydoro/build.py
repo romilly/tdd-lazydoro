@@ -7,13 +7,12 @@ from tdd_lazydoro.pomodoro import Pomodoro
 from tdd_lazydoro.rangefinder import RangeFinder
 
 
-def build(
-          display: Optional[Display] = None,
+def build(display: Optional[Display] = None,
           rangefinder: Optional[RangeFinder]= None,
           ticks_per_minute=60,
           speed=1,
           duration=25,
-          break_time=5):
+          break_time=5): # pragma: no cover
     if display is None: # pragma: no cover
         from tdd_lazydoro.blinkt_display import BlinktDisplay
         display = BlinktDisplay()

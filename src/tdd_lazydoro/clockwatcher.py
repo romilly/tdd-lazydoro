@@ -10,19 +10,18 @@ class ClockWatcher:
         self.pomodoro = pomodoro
         self.range_threshold = range_threshold
         self.person_was_present = False
-        self.glitch_filter = GlitchFilter(11)
+        self.glitch_filter = GlitchFilter(11) # maybe make 11 an optional parameter
         self.snooze_time = 1 / speed
 
     def is_person_in_range(self, tof_range: int):
         return tof_range < self.range_threshold
 
-    def tell_pomodoro_if_person_arrives_or_leaves(self, tof_range: int):
-        person_present = self.glitch_filter.filter(self.is_person_in_range(tof_range))
-        if person_present and not self.person_was_present:
+    def arrives_or_leaves(self, person_now_present, person_was_present):
+        if person_now_present and not person_was_present:
             self.pomodoro.person_arrives()
-        if self.person_was_present and not person_present:
+        if person_was_present and not person_now_present:
             self.pomodoro.person_leaves()
-        self.person_was_present = person_present
+        return person_now_present
 
     def run(self):
         while True: # pragma: no cover
@@ -31,7 +30,9 @@ class ClockWatcher:
 
     def tick(self):
         self.pomodoro.tick()
-        self.tell_pomodoro_if_person_arrives_or_leaves(self.rangefinder.range())
+        range = self.rangefinder.range()
+        person_now_present = self.glitch_filter.filter(self.is_person_in_range(range))
+        self.person_was_present = self.arrives_or_leaves(person_now_present, self.person_was_present)
 
 
 
