@@ -50,6 +50,7 @@ def shows_only(*expected_colors: Tuple[int, int, int]):
 def shows_all(expected_color: Tuple[int, int, int]):
     return ShowsOnly(8*[expected_color])
 
+
 class MockDisplay(Display):
     def __init__(self):
         self.led_colors = None

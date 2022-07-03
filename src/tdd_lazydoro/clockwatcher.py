@@ -16,13 +16,19 @@ class ClockWatcher:
     def is_person_in_range(self, tof_range: int):
         return tof_range < self.range_threshold
 
-    def arrives_or_leaves(self, person_now_present, person_was_present):
+    def check_comings_and_goings(self, person_now_present, person_was_present):
         if person_now_present and not person_was_present:
-            self.pomodoro.person_arrives()
-        if person_was_present and not person_now_present:
-            self.pomodoro.person_leaves()
-        return person_now_present
+            self.person_arrives()
+        elif person_was_present and not person_now_present:
+            self.person_leaves()
 
+    def person_leaves(self):
+        self.pomodoro.person_leaves()
+
+    def person_arrives(self):
+        self.pomodoro.person_arrives()
+
+    # TODO: move this out to a runner
     def run(self):
         while True: # pragma: no cover
             self.tick()
@@ -32,7 +38,8 @@ class ClockWatcher:
         self.pomodoro.tick()
         range = self.rangefinder.range()
         person_now_present = self.glitch_filter.filter(self.is_person_in_range(range))
-        self.person_was_present = self.arrives_or_leaves(person_now_present, self.person_was_present)
+        self.check_comings_and_goings(person_now_present, self.person_was_present)
+        self.person_was_present = person_now_present # ready for next tick
 
 
 
