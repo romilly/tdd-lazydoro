@@ -1,17 +1,14 @@
-from abc import ABC, abstractmethod
-from typing import Tuple
-
-
-class Display(ABC):
-    @abstractmethod
+# abstract class
+class Display():
+    # abstract method
     def clear_leds(self): #pragma: no cover
         pass
 
-    @abstractmethod
-    def set_led(self, number, rgb: Tuple[int, int, int]):  #pragma: no cover
+    # abstract method
+    def set_led(self, number, rgb):  #pragma: no cover
         pass
 
-    @abstractmethod
+    # abstract method
     def buzz(self):  #pragma: no cover
         pass
 

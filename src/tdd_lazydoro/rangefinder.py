@@ -1,8 +1,6 @@
-from abc import ABC, abstractmethod
-
-
-class RangeFinder(ABC):
-    @abstractmethod
+# abstract class
+class RangeFinder():
+    # abstract method
     def distance(self) -> int: # pragma: no cover
         pass
 
