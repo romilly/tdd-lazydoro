@@ -23,7 +23,7 @@ def ws2812():
 
 
 class NeoPixel:
-    def __init__(self, pin=16, count=8, brightness = 0.2):
+    def __init__(self, pin=6, count=8, brightness = 0.2):
         self.pin = pin
         self.count = count
         self.brightness = brightness
@@ -49,7 +49,7 @@ class NeoPixel:
 
     def clear(self):
         for i in range(self.count):
-            self.set(BLACK)
+            self.set(i, BLACK)
 
 
 
