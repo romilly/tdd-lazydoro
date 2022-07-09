@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from tdd_lazydoro.build import build
+from tdd_lazydoro.raspi.build import build
 
 """
 Run fast for demo purposes
