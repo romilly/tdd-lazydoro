@@ -2,7 +2,7 @@ from tdd_lazydoro.colors import *
 from tdd_lazydoro.display import Display
 
 
-class BlinktAdapter:
+class DisplayAdapter:
     def __init__(self, display: Display):
         self.display = display
 

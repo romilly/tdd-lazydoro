@@ -8,7 +8,7 @@ class Display(ABC):
         pass
 
     @abstractmethod
-    def set_led(self, number, rgb: Tuple[int]):  #pragma: no cover
+    def set_led(self, number, rgb: Tuple[int, int, int]):  #pragma: no cover
         pass
 
     @abstractmethod

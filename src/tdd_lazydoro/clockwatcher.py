@@ -28,7 +28,6 @@ class ClockWatcher:
     def person_arrives(self):
         self.pomodoro.person_arrives()
 
-    # TODO: move this out to a runner
     def run(self):
         while True: # pragma: no cover
             self.tick()
@@ -36,10 +35,15 @@ class ClockWatcher:
 
     def tick(self):
         self.pomodoro.tick()
-        range = self.rangefinder.range()
-        person_now_present = self.glitch_filter.filter(self.is_person_in_range(range))
-        self.check_comings_and_goings(person_now_present, self.person_was_present)
-        self.person_was_present = person_now_present # ready for next tick
+        self.check_presence()
+
+    def check_presence(self):
+        distance = self.rangefinder.distance()
+        person_now_present = self.glitch_filter.filter(
+            self.is_person_in_range(distance))
+        self.check_comings_and_goings(person_now_present,
+                                      self.person_was_present)
+        self.person_was_present = person_now_present  # ready for next tick
 
 
 

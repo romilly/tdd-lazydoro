@@ -14,8 +14,8 @@ def build(display: Optional[Display] = None,
           duration=25,
           break_time=5): # pragma: no cover
     if display is None: # pragma: no cover
-        from tdd_lazydoro.blinkt_display import BlinktDisplay
-        display = BlinktDisplay()
+        from tdd_lazydoro.led_display import LedAndBuzzerDisplay
+        display = LedAndBuzzerDisplay()
     else: # pragma: no cover
         display = display
     if rangefinder is None: # pragma: no cover

@@ -8,7 +8,7 @@ from gpiozero import TonalBuzzer
 from gpiozero.tones import Tone
 
 
-class BlinktDisplay(Display):
+class LedAndBuzzerDisplay(Display):
     def __init__(self):
         blinkt.set_brightness(0.6)
 
@@ -16,8 +16,7 @@ class BlinktDisplay(Display):
         blinkt.clear()
         blinkt.show()
 
-    def set_led(self, number, rgb: Tuple[int]):
-        # print('setting led %d %s' % (number, rgb))
+    def set_led(self, number, rgb: Tuple[int, int, int]):
         blinkt.set_pixel(number, *rgb)
         blinkt.show()
 

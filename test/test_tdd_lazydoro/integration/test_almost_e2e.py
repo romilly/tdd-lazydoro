@@ -1,9 +1,8 @@
 import unittest
-from typing import List, Tuple
 
 from hamcrest import assert_that, equal_to
 
-from tdd_lazydoro.build import build
+from tdd_lazydoro.raspi.build import build
 from tdd_lazydoro.colors import *
 
 from test_tdd_lazydoro.helpers.mocks import MockDisplay, MockRangeFinder, shows_only, shows_all
@@ -19,7 +18,7 @@ class AlmostE2ETestCase(unittest.TestCase):
                              speed=100,
                              ticks_per_minute=self.ticks_per_minute)
 
-    def test_principal_success_scenario(self):
+    def test_tracks_full_pomodoro(self):
         # main success scenario
         self.person_absent()
         self.wait(1)

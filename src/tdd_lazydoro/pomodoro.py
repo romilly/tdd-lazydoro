@@ -1,4 +1,4 @@
-from tdd_lazydoro.blinkt_adapter import BlinktAdapter
+from tdd_lazydoro.display_adapter import DisplayAdapter
 from tdd_lazydoro.alarm import Alarm
 
 
@@ -11,7 +11,8 @@ class Pomodoro:
     ON_BREAK = 'On a break'
     BREAK_TICK = 'Break tick'
 
-    def __init__(self, adapter: BlinktAdapter, duration=25, break_time=5, ticks_per_minute=60):
+    def __init__(self, adapter: DisplayAdapter, duration=25, break_time=5,
+                 ticks_per_minute=60):
         self.adapter = adapter
         self.minute_timer = 0
         self.duration = duration

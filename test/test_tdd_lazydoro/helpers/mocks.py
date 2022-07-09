@@ -78,7 +78,7 @@ class MockRangeFinder(RangeFinder):
     def __init__(self):
         self.current_range = self.RANGE_WHEN_PERSON_ABSENT
 
-    def range(self) -> int:
+    def distance(self) -> int:
         return self.current_range
 
     def person_absent(self):

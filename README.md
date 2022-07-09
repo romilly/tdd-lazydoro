@@ -1,10 +1,9 @@
-# Lazydoro Mk II
-
+# Lazydoro Mk III
 
 Lazydoro is a small device that helps writers and programmers to practice the
 [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).
 
-![Lazydoro Mk II hardware](docs/img/lazydoro.jpg)
+![Lazydoro Mk III hardware](docs/img/lazydoro.jpg)
 
 If you're writing text or code, you probably work at a desk. Lazydoro can see if you're at your desk.
 
