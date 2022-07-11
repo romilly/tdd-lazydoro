@@ -3,7 +3,7 @@ from tdd_lazydoro.display import Display
 
 
 class DisplayAdapter:
-    def __init__(self, display: Display):
+    def __init__(self, display: Display, messenger = None):
         self.display = display
 
     def show_break_progress(self, timer):
