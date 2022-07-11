@@ -30,5 +30,5 @@ class MQTTTestClient:
         self.client.disconnect()
 
 
-def mqtt_send(msg: str):
-    subprocess.run(['mosquitto_pub', '-t', 'lazytest', '-m', msg])
+def mqtt_send(msg: str, topic: str = 'lazytest'):
+    subprocess.run(['mosquitto_pub', '-t', topic, '-m', msg])
