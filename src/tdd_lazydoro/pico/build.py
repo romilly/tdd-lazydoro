@@ -13,7 +13,7 @@ def build(ticks_per_minute=60,
     display = PicoDisplay()
 
     rangefinder =   VL53L0XRangeFinder()
-    pomodoro = Pomodoro(DisplayAdapter(display),
+    pomodoro = Pomodoro(DisplayAdapter(display, None),
                         ticks_per_minute=ticks_per_minute,
                         duration=duration,
                         break_time=break_time)

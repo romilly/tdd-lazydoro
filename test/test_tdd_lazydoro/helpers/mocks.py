@@ -70,6 +70,7 @@ class MockDisplay(Display):
     def __repr__(self):
         return repr(ColorList(self.led_colors))
 
+
 class MockRangeFinder(RangeFinder):
     RANGE_WHEN_PERSON_PRESENT = 300
     RANGE_WHEN_PERSON_ABSENT = 8191
@@ -85,6 +86,18 @@ class MockRangeFinder(RangeFinder):
 
     def person_present(self):
         self.current_range = self.RANGE_WHEN_PERSON_PRESENT
+
+
+
+class MockMessenger:
+    def __init__(self):
+        self.messages = []
+
+    def pop(self):
+        return self.messages.pop()
+
+    def send(self, message):
+        self.messages.append(message)
 
 
 

@@ -57,7 +57,6 @@ class AlmostE2ETestCase(unittest.TestCase):
         self.wait(seconds=20)
         assert_that(self.display, shows_only(BLUE))
 
-
     def wait(self, minutes=0, seconds=0):
         duration = seconds + minutes * self.ticks_per_minute
         for i in range(duration):
