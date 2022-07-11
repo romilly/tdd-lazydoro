@@ -28,6 +28,9 @@ class MQTTTestClient:
     def close(self):
         self.client.disconnect()
 
+    def message_count(self):
+        return len(self.messages())
+
 
 def mqtt_send(msg: str, topic: str = 'lazytest'):
     subprocess.run(['mosquitto_pub', '-t', topic, '-m', msg])
