@@ -2,6 +2,10 @@ from tdd_lazydoro.display_adapter import DisplayAdapter
 from tdd_lazydoro.alarm import Alarm
 
 
+class MessageAdapter:
+    pass
+
+
 class Pomodoro:
     TIME_ELAPSED = 'Time elapsed'
     WAITING = 'Waiting'
@@ -11,7 +15,11 @@ class Pomodoro:
     ON_BREAK = 'On a break'
     BREAK_TICK = 'Break tick'
 
-    def __init__(self, adapter: DisplayAdapter, duration=25, break_time=5,
+    def __init__(self,
+                 adapter: DisplayAdapter,
+                 messenger: MessageAdapter=None,
+                 duration=25,
+                 break_time=5,
                  ticks_per_minute=60):
         self.adapter = adapter
         self.minute_timer = 0
