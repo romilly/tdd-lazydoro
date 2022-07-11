@@ -16,8 +16,7 @@ class MQTTTestClient:
         return len(self.messages()) == 0
 
     def messages(self):
-        result = self._messages
-        return result
+        return self._messages
 
     def message_arrives(self, client, userdata, message):
         self._messages.append(message.payload)
