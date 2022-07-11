@@ -2,9 +2,6 @@ from tdd_lazydoro.display_adapter import DisplayAdapter
 from tdd_lazydoro.alarm import Alarm
 
 
-class MessageAdapter:
-    pass
-
 
 class Pomodoro:
     TIME_ELAPSED = 'Time elapsed'
@@ -17,7 +14,6 @@ class Pomodoro:
 
     def __init__(self,
                  adapter: DisplayAdapter,
-                 messenger: MessageAdapter=None,
                  duration=25,
                  break_time=5,
                  ticks_per_minute=60):

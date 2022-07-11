@@ -22,7 +22,5 @@ class GlitchFilterTestCase(unittest.TestCase):
         assert_that(output, equal_to(7*[False]))
 
 
-
-
 if __name__ == '__main__':
     unittest.main()

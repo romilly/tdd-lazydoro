@@ -3,7 +3,7 @@ from tdd_lazydoro.display import Display
 
 
 class DisplayAdapter:
-    def __init__(self, display: Display, messenger = None):
+    def __init__(self, display: Display):
         self.display = display
 
     def show_break_progress(self, timer):
@@ -15,7 +15,6 @@ class DisplayAdapter:
     def start_working(self):
         self.display.clear_leds()
         self.display.set_led(0, BLUE)
-        self.display.send_message('starting pomodoro')
 
     def show_working_progress(self, timer):
         self.display.set_led(min(7, timer // 3), BLUE)

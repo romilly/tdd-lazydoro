@@ -14,8 +14,3 @@ class Display(ABC):
     @abstractmethod
     def buzz(self):  #pragma: no cover
         pass
-
-    @abstractmethod
-    def send_message(self, text):
-        pass
-

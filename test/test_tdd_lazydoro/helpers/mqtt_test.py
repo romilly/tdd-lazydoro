@@ -24,7 +24,6 @@ class MQTTTestClient:
     def pop(self):
         return self._messages.pop()
 
-
     def close(self):
         self.client.disconnect()
 

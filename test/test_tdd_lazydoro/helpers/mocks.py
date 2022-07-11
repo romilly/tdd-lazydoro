@@ -56,10 +56,6 @@ class MockDisplay(Display):
         self.led_colors = None
         self.clear_leds()
         self.buzzing = False
-        self._messages = []
-
-    def send_message(self, text):
-        self._messages.append(text)
 
     def clear_leds(self):
         self.led_colors = 8*[OFF]
@@ -73,10 +69,6 @@ class MockDisplay(Display):
 
     def __repr__(self):
         return repr(ColorList(self.led_colors))
-
-    def message_length(self):
-        return len(self._messages)
-
 
 class MockRangeFinder(RangeFinder):
     RANGE_WHEN_PERSON_PRESENT = 300
