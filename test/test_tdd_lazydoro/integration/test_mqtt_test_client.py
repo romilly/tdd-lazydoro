@@ -1,5 +1,4 @@
 import unittest
-
 from hamcrest import assert_that, equal_to
 
 from test_tdd_lazydoro.helpers.mqtt_test import MQTTTestClient, mqtt_send
