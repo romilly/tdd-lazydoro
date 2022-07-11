@@ -1,14 +1,21 @@
 # abstract class
-class Display():
-    # abstract method
+from abc import abstractmethod, ABC
+
+
+class Display(ABC):
+    @abstractmethod
     def clear_leds(self): #pragma: no cover
         pass
 
-    # abstract method
+    @abstractmethod
     def set_led(self, number, rgb):  #pragma: no cover
         pass
 
-    # abstract method
+    @abstractmethod
     def buzz(self):  #pragma: no cover
+        pass
+
+    @abstractmethod
+    def send_message(self, text):
         pass
 
