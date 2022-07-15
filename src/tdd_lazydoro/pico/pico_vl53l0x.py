@@ -323,6 +323,12 @@ class VL53L0X:
 
         self._register(_SYSTEM_SEQUENCE, 0xe8)
 
+        # I have no idea what these do, but they were in the original demo
+        # and they seem to work (RJC 20220719)
+
+        # self.set_Vcsel_pulse_period(self.vcsel_period_type[0], 18)
+        # self.set_Vcsel_pulse_period(self.vcsel_period_type[1], 14)
+
     def _spad_info(self):
         self._config(
             (0x80, 0x01),

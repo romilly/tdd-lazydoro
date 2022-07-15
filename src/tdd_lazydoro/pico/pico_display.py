@@ -7,7 +7,7 @@ import time
 class PicoDisplay(Display):
     def __init__(self):
         self.np = NeoPixel()
-        self.buzzer = Pin(15, Pin.OUT)
+        self.buzzer = Pin(17, Pin.OUT)
 
     def clear_leds(self):
         self.np.clear()

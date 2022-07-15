@@ -1,26 +1,31 @@
 import time
-from machine import Pin
-from machine import I2C
-import pico_vl53l0x
+from machine import Pin, I2C
+from tdd_lazydoro.pico.pico_vl53l0x import VL53L0X
 from tdd_lazydoro.rangefinder import RangeFinder
 
-sda = machine.Pin(0)
-scl = machine.Pin(1)
-i2c = machine.I2C(0,sda=sda, scl=scl)
+sda = Pin(0)
+scl = Pin(1)
+i2c = I2C(0,sda=sda, scl=scl)
 
 # Create a VL53L0X object
-tof = pico_vl53l0x.VL53L0X(i2c)
-
-tof.set_Vcsel_pulse_period(tof.vcsel_period_type[0], 18)
-
-tof.set_Vcsel_pulse_period(tof.vcsel_period_type[1], 14)
+tof = VL53L0X(i2c)
 
 
 class PicoRangefinder(RangeFinder):
     def distance(self):
-    # Start ranging
         tof.start()
         tof.read()
-        result = tof.read()
+        tof_range = tof.read()
         tof.stop()
-        return result
+        if tof_range == 0:  # sometimes get this when nothing is in range
+            tof_range = 8191
+        return tof_range
+
+
+if __name__ == '__main__':
+    p = PicoRangefinder()
+    while True:
+        try:
+            print(p.distance())
+        finally:
+            tof.stop()
