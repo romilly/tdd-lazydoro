@@ -6,9 +6,10 @@
 cd ..
 DIST_DIR='dist-pico'
 SRC_DIR='src'
-PICO_PKG_DIR='tdd_lazydoro/pico'
-PICO_SRC_DIR=$SRC_DIR/$PICO_PKG_DIR
-TARGET_DIR=$DIST_DIR/$PICO_PKG_DIR
+PICO_DIR='pico'
+LAZY='tdd_lazydoro'
+PICO_SRC_DIR=$SRC_DIR/$LAZY/$PICO_DIR
+TARGET_DIR=$DIST_DIR/$PICO_DIR
 
 
 # ensure the dist-pico directory exists
@@ -25,9 +26,7 @@ cp $SRC_DIR/pico_walking_skeleton.py $DIST_DIR/
 mkdir -p $TARGET_DIR
 
 cp $PICO_SRC_DIR/neo.py $TARGET_DIR/
-cp $PICO_SRC_DIR/pico_display.py $TARGET_DIR/
 cp $PICO_SRC_DIR/pico_vl53l0x.py $TARGET_DIR/
-cp $PICO_SRC_DIR/pico_rangefinder.py $TARGET_DIR/
 cp $PICO_SRC_DIR/colors.py $TARGET_DIR/
 
 ## copy files to Pico board

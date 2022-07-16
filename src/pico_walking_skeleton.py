@@ -1,11 +1,28 @@
 # A script that checks all the bits of lazydoro are plugged in and working
 
-from machine import Pin
+from machine import Pin, I2C
 import time
 
-from tdd_lazydoro.pico.neo import NeoPixel
-from tdd_lazydoro.pico.pico_rangefinder import PicoRangefinder
-from tdd_lazydoro.pico.colors import GREEN, YELLOW, RED, BLUE
+from pico.neo import NeoPixel
+from pico.pico_vl53l0x import VL53L0X
+from pico.colors import GREEN, YELLOW, RED, BLUE
+
+
+class PicoRangefinder:
+    def __init__(self):
+        i2c = I2C(0, sda=(Pin(0)), scl=(Pin(1)))
+        self.tof = VL53L0X(i2c)
+        self.tof.start()
+
+    def distance(self):
+        tof_range = self.tof.read()
+        if tof_range == 0:  # sometimes we get this when nothing is in range
+            tof_range = 8191
+        # scaled_distance is between 0 and 8
+        return min(8, int(tof_range / 50))
+
+    def stop(self):
+        self.tof.stop()
 
 
 class PicoDisplayAdapter:
@@ -40,8 +57,7 @@ class Skeleton():
         while True:
             try:
                 distance = self.rangefinder.distance()
-                scaled_distance = min(8,int(distance/50)) # scaled_distance is between 0 and 8
-                self.display_adapter.show(scaled_distance)
+                self.display_adapter.show(distance)
                 time.sleep(1)
             finally:
                 self.rangefinder.stop()
