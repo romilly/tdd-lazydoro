@@ -3,7 +3,7 @@
 from machine import Pin, I2C
 import time
 
-from pico.mp import ABC, abstractmethod
+from pico.mp.abc import ABC, abstractmethod
 
 from pico.neo import NeoPixel
 from pico.pico_vl53l0x import VL53L0X
