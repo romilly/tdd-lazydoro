@@ -137,4 +137,4 @@ ENV/
 
 .idea/
 
-/dist_pico/*
+/dist-pico/*
