@@ -50,8 +50,8 @@ class PicoDisplayAdapter:
 
 class Skeleton():
     def __init__(self):
-        self.display_adapter = PicoDisplayAdapter()
         self.rangefinder = PicoRangefinder()
+        self.display_adapter = PicoDisplayAdapter()
 
     def run(self):
         while True:
