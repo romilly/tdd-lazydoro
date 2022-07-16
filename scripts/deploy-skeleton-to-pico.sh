@@ -28,6 +28,7 @@ mkdir -p $TARGET_DIR
 cp $PICO_SRC_DIR/neo.py $TARGET_DIR/
 cp $PICO_SRC_DIR/pico_vl53l0x.py $TARGET_DIR/
 cp $PICO_SRC_DIR/colors.py $TARGET_DIR/
+cp -r $PICO_SRC_DIR/mp $TARGET_DIR
 
 ## copy files to Pico board
 
