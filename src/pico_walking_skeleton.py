@@ -5,7 +5,7 @@ import time
 
 from tdd_lazydoro.pico.neo import NeoPixel
 from tdd_lazydoro.pico.pico_rangefinder import PicoRangefinder
-from tdd_lazydoro.colors import GREEN, YELLOW, RED, BLUE
+from tdd_lazydoro.pico.colors import GREEN, YELLOW, RED, BLUE
 
 
 class PicoDisplayAdapter:
@@ -41,9 +41,8 @@ class Skeleton():
             try:
                 distance = self.rangefinder.distance()
                 scaled_distance = min(8,int(distance/50)) # scaled_distance is between 0 and 8
-                for i in range(scaled_distance):
-                    self.display_adapter.show(scaled_distance)
-                    time.sleep(1)
+                self.display_adapter.show(scaled_distance)
+                time.sleep(1)
             finally:
                 self.rangefinder.stop()
                 self.display_adapter.stop()
