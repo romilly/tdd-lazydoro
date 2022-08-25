@@ -33,12 +33,12 @@ class MQTTTestClient:
     def message_count(self):
         return len(self.messages())
 
-    def wait_for_message(self, tries = 10, interval = 0.1):
+    def wait_for_message(self, tries = 100, interval = 0.01):
         for i in range(tries):
             if len(self.messages()) > 0:
                 return
             sleep(interval)
-        raise ValueError('wainting for message timed out')
+        raise ValueError('waiting for message - timed out')
 
 
 def mqtt_send(msg: str, topic: str = 'lazytest'):
