@@ -9,8 +9,10 @@ from gpiozero.tones import Tone
 
 
 class LedAndBuzzerDisplay(Display):
+
     def __init__(self):
         blinkt.set_brightness(0.6)
+
 
     def clear_leds(self):
         blinkt.clear()

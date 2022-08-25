@@ -1,11 +1,14 @@
 import subprocess
+import uuid
+from time import sleep
 
 import paho.mqtt.client as mqtt
 
 
 class MQTTTestClient:
     def __init__(self, topic, server = 'localhost'):
-        self.client = mqtt.Client(client_id='TestClient', clean_session=True)
+        client_id = 'TestClient-%s' % str(uuid.uuid1())
+        self.client = mqtt.Client(client_id=client_id, clean_session=True)
         self.client.connect(server)
         self.client.loop_start()
         self._messages = []
@@ -29,6 +32,13 @@ class MQTTTestClient:
 
     def message_count(self):
         return len(self.messages())
+
+    def wait_for_message(self, tries = 10, interval = 0.1):
+        for i in range(tries):
+            if len(self.messages()) > 0:
+                return
+            sleep(interval)
+        raise ValueError('wainting for message timed out')
 
 
 def mqtt_send(msg: str, topic: str = 'lazytest'):

@@ -29,6 +29,7 @@ class DisplayAdapter:
             self.display.set_led(i, RED)
 
     def start_break(self):
+        self.messenger.send('break started now')
         self.display.clear_leds()
         self.display.set_led(0, GREEN)
 
