@@ -14,7 +14,7 @@ class ClockWatcher:
         self.snooze_time = 1 / speed
 
     def is_person_in_range(self, tof_range: int):
-        return tof_range < self.range_threshold
+        return 20  <= tof_range < self.range_threshold
 
     def check_comings_and_goings(self, person_now_present, person_was_present):
         if person_now_present and not person_was_present:
@@ -39,6 +39,7 @@ class ClockWatcher:
 
     def check_presence(self):
         distance = self.rangefinder.distance()
+        # print(distance)
         person_now_present = self.glitch_filter.filter(
             self.is_person_in_range(distance))
         self.check_comings_and_goings(person_now_present,
