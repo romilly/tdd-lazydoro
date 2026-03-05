@@ -4,10 +4,10 @@ from hamcrest import assert_that, equal_to
 
 from tdd_lazydoro.raspi.build import build
 from tdd_lazydoro.colors import *
-from tdd_lazydoro.raspi.mqtt import POMODORO_TOPIC
+from tdd_lazydoro.raspi.mqtt import MQTTMessenger, POMODORO_TOPIC
 
 from test_tdd_lazydoro.helpers.mocks import MockDisplay, MockRangeFinder, shows_only, shows_all
-from test_tdd_lazydoro.helpers.mqtt_test import MQTTTestClient
+from test_tdd_lazydoro.helpers.mqtt_helper import MQTTTestClient, MQTT_SERVER
 
 
 class AlmostE2ETestCase(unittest.TestCase):
@@ -15,9 +15,11 @@ class AlmostE2ETestCase(unittest.TestCase):
         self.rangefinder = MockRangeFinder()
         self.display = MockDisplay()
         self.ticks_per_minute = 60
-        self.mqtt_client = MQTTTestClient(POMODORO_TOPIC)
+        self.mqtt_client = MQTTTestClient(POMODORO_TOPIC, server=MQTT_SERVER)
+        self.messenger = MQTTMessenger(MQTT_SERVER)
         self.watcher = build(rangefinder=self.rangefinder,
                              display=self.display,
+                             messenger=self.messenger,
                              speed=100,
                              ticks_per_minute=self.ticks_per_minute)
 

@@ -3,12 +3,16 @@ import uuid
 from time import sleep
 
 import paho.mqtt.client as mqtt
+from paho.mqtt.enums import CallbackAPIVersion
+
+
+MQTT_SERVER = 'watcher'
 
 
 class MQTTTestClient:
-    def __init__(self, topic, server = 'localhost'):
+    def __init__(self, topic, server = MQTT_SERVER):
         client_id = 'TestClient-%s' % str(uuid.uuid1())
-        self.client = mqtt.Client(client_id=client_id, clean_session=True)
+        self.client = mqtt.Client(callback_api_version=CallbackAPIVersion.VERSION2, client_id=client_id)
         self.client.connect(server)
         self.client.loop_start()
         self._messages = []
@@ -21,7 +25,7 @@ class MQTTTestClient:
     def messages(self):
         return self._messages
 
-    def message_arrives(self, client, userdata, message):
+    def message_arrives(self, client, userdata, message, *args):
         self._messages.append(message.payload)
 
     def pop(self):
@@ -41,5 +45,5 @@ class MQTTTestClient:
         raise ValueError('waiting for message - timed out')
 
 
-def mqtt_send(msg: str, topic: str = 'lazytest'):
-    subprocess.run(['mosquitto_pub', '-t', topic, '-m', msg])
+def mqtt_send(msg: str, topic: str = 'lazytest', server: str = MQTT_SERVER):
+    subprocess.run(['mosquitto_pub', '-h', server, '-t', topic, '-m', msg])

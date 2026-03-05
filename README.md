@@ -20,44 +20,68 @@ you to start again.
 
 I documented this behaviour more formally in [a use case](docs/use-case.md).
 
-The current version of Lazydoro Mk 5 is driven by a Raspberry Pi Zero or a 
-Raspberry Pi Pico. Other models could be used instead.
+The current version of Lazydoro Mk 5 is driven by a Raspberry Pi Zero. Other models could be used instead.
 
 The additional hardware for the Pi is described [here](docs/hardware.md).
 
-Docs for the Pico hardware are coming soon.
+## Development setup
 
-### Installing the software on a Pi
+1. Clone this repository.
 
-I will package Lazydoro when it's stable. Until then, once you have built the hardware,
+2. Create and activate a virtual environment:
+
+   ```shell
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install dependencies:
+
+   ```shell
+   pip install PyHamcrest paho-mqtt pytest
+   ```
+
+4. Run the tests:
+
+   ```shell
+   pytest
+   ```
+
+The MQTT integration tests require a Mosquitto broker running on a host called `watcher`,
+and `mosquitto_pub` installed locally.
+
+## Installing the software on a Pi
+
+Once you have built the hardware:
 
 1. Clone this repository on the Raspberry Pi.
-2. Install the required software:
+
+2. Create and activate a virtual environment:
+
+   ```shell
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install the required software (check current Pimoroni docs for blinkt install):
+
+   ```shell
+   pip install blinkt adafruit-circuitpython-vl53l0x PyHamcrest paho-mqtt
+   ```
+
+## Running the software on the Pi
+
 ```shell
-curl https://get.pimoroni.com/blinkt | bash 
-pip3 install adafruit-circuitpython-vl53l0x
-pip3 install PyHamcrest # needed for testing
-
-```
-
-### Running the software in the Pi
-
-```shell
+source venv/bin/activate
 cd <project root>/src
-python3 run.py
+python3 runner.py
 ```
 
-You can stop it by typing `crtl-C`.
-
-
-### 
+You can stop it by typing `ctrl-C`.
 
 ## Future plans
 
 I'm now using this project, and will start blogging about the implementation.
-
-As of today (2 April 2022) automated test coverage is at 97%.
-That's a high figure for an embedded Python application!
 
 
 
