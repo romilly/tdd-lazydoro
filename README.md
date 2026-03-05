@@ -38,7 +38,7 @@ The additional hardware for the Pi is described [here](docs/hardware.md).
 3. Install dependencies:
 
    ```shell
-   pip install PyHamcrest paho-mqtt pytest
+   pip install -r requirements.txt
    ```
 
 4. Run the tests:
@@ -63,10 +63,10 @@ Once you have built the hardware:
    source venv/bin/activate
    ```
 
-3. Install the required software (check current Pimoroni docs for blinkt install):
+3. Install the required software:
 
    ```shell
-   pip install blinkt adafruit-circuitpython-vl53l0x PyHamcrest paho-mqtt
+   pip install -r requirements.txt
    ```
 
 ## Running the software on the Pi

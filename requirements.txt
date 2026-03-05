@@ -1,0 +1,7 @@
+blinkt
+adafruit-circuitpython-vl53l0x
+gpiozero
+paho-mqtt>=2.0
+PyHamcrest>=2.0
+pytest>=9.0
+pyright>=1.1
