@@ -1,5 +1,6 @@
 from typing import Optional
 
+from tdd_lazydoro.noop_messenger import NoOpMessenger
 from tdd_lazydoro.display_adapter import DisplayAdapter
 from tdd_lazydoro.clockwatcher import ClockWatcher
 from tdd_lazydoro.display import Display
@@ -22,8 +23,7 @@ def build(display: Optional[Display] = None,
         from tdd_lazydoro.raspi.vl53l0x_rangefinder import VL53L0XRangeFinder
         rangefinder =   VL53L0XRangeFinder()
     if messenger is None:
-        from tdd_lazydoro.raspi.mqtt import MQTTMessenger
-        messenger = MQTTMessenger(hostname)
+        messenger = NoOpMessenger()
     pomodoro = Pomodoro(DisplayAdapter(display, messenger), ticks_per_minute=ticks_per_minute, duration=duration,
                         break_time=break_time)
     return ClockWatcher(rangefinder, pomodoro, speed=speed)

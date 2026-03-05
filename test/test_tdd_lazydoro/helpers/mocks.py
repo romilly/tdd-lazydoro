@@ -9,7 +9,7 @@ from tdd_lazydoro.colors import OFF, color_map
 
 
 class ColorList:
-    def __init__(self, colors: List[Tuple[int, int, int]]):
+    def __init__(self, colors: List):
         self.colors = colors
 
     def __getitem__(self, item: int):
@@ -28,8 +28,8 @@ class ShowsOnly(BaseMatcher):
         self.expected_colors = ColorList(expected_colors)
 
 
-    def _matches(self, display: 'MockDisplay') -> bool:
-        actual_colors = ColorList(display.led_colors)
+    def _matches(self, item: 'MockDisplay') -> bool:
+        actual_colors = ColorList(item.led_colors)
         for i in range(8):
             if i < len(self.expected_colors):
                 if actual_colors[i] != self.expected_colors[i]:
@@ -53,7 +53,7 @@ def shows_all(expected_color: Tuple[int, int, int]):
 
 class MockDisplay(Display):
     def __init__(self):
-        self.led_colors = None
+        self.led_colors = 8*[OFF]
         self.clear_leds()
         self.buzzing = False
 

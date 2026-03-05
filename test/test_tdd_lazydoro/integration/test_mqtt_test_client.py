@@ -1,8 +1,11 @@
 import unittest
+
+import pytest
 from hamcrest import assert_that, equal_to
 
-from test_tdd_lazydoro.helpers.mqtt_test import MQTTTestClient, mqtt_send
+paho = pytest.importorskip("paho.mqtt.client", reason="requires paho-mqtt")
 
+from test_tdd_lazydoro.helpers.mqtt_helper import MQTTTestClient, mqtt_send
 
 
 class MQTTTestClientTestCase(unittest.TestCase):
