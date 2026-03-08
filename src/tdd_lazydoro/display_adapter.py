@@ -1,4 +1,4 @@
-import time
+from time import sleep
 
 from tdd_lazydoro.colors import *
 from tdd_lazydoro.display import Display
@@ -33,9 +33,9 @@ class DisplayAdapter:
     def break_due(self):
         for _ in range(4):
             self._red_leds()
-            time.sleep(0.1)
+            sleep(0.1)
             self.display.clear_leds()
-            time.sleep(0.1)
+            sleep(0.1)
         self._red_leds()
 
     def start_break(self):
